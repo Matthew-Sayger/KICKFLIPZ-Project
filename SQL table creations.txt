@@ -107,3 +107,9 @@ FROM
     Electronic
 
 );
+INSERT INTO Sales_Inventory(Receipt_Number, InventoryID)
+SELECT DISTINCT
+    Receipt_Number,
+    ItemID
+FROM
+    Sales
