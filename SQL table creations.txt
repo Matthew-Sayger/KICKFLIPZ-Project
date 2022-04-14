@@ -1,0 +1,107 @@
+CREATE TABLE Employee (
+	EmployeeID int(4) NOT NULL,
+	FirstName varchar(50),
+	LastName varchar(50),
+	PRIMARY KEY (EmployeeID),
+	UNIQUE (EmployeeID)
+);
+CREATE TABLE Customer (
+	CustomerID int(4),
+	FirstName varchar(50),
+	LastName varchar(50),
+	Email string(70),
+	Phone_Number Varchar(15),
+	PRIMARY KEY (CustomerID),
+	UNIQUE (CustomerID)
+);
+CREATE TABLE Sales (
+	Receipt_Number int(13),
+	CustomerID int(4),
+	Items_Sold String(100),
+	EmployeeID int(4),
+	Amount_Sold int(4),
+	PRIMARY KEY (Receipt_Number),
+	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
+	FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID),
+	UNIQUE (Receipt_Number)
+);
+CREATE TABLE Sales_Inventory(
+InventoryID Int(4),
+Receipt_Number Int(13)
+);
+CREATE TABLE Electronic (
+	InventoryID Int(4),
+	Type String(20),
+	PRIMARY KEY (InventoryID),
+	UNIQUE (InventroyID)
+ALTER TABLE `Electronic` ADD `Price` DOUBLE(6,2) NOT NULL DEFAULT '0' AFTER `Type`, ADD `Amount` INT(4) NOT NULL DEFAULT '0' AFTER `Price`, ADD `Name` VARCHAR(50) NULL DEFAULT NULL AFTER `Amount`, ADD `Brand` VARCHAR(20) NULL DEFAULT NULL AFTER `Name`;
+);
+CREATE TABLE Apparel (
+	InventoryID Int(4),
+	Color String(20),
+	Size String(5),
+	Silhouette String(13),
+	PRIMARY KEY (InventoryID),
+	UNIQUE (InventoryID)
+
+ALTER TABLE `Apparel` ADD `Price` DOUBLE(8) NOT NULL DEFAULT '0.0' AFTER `Amount_In_Stock`, ADD `Brand` VARCHAR(20) NULL DEFAULT NULL AFTER `Price`;
+
+ALTER TABLE `Apparel` ADD `Name` VARCHAR(50) NULL DEFAULT NULL AFTER `Silhouette`;
+
+ALTER TABLE `Apparel` ADD `Amount_In_Stock` INT(4) NOT NULL DEFAULT '0' AFTER `Name`;
+
+ALTER TABLE `Apparel` ADD `Price` DOUBLE(4,2) NOT NULL DEFAULT '0' AFTER `Brand`;
+
+);
+CREATE TABLE Inventory (
+	InventoryID Int(4),
+	Amount Int(4),
+	Name String(10),
+	Price Double,
+	Brand String(20),
+	PRIMARY KEY (InventoryID)
+
+INSERT INTO Inventory(
+    `InventoryID`,
+    `Name`,
+    `Brand`,
+    `Amount_In_Stock`,
+    `Price`
+)
+SELECT
+    `InventoryID`,
+    `Name`,
+    `Brand`,
+    `Amount_In_Stock`,
+    `Price`
+FROM
+    Electronic
+
+INSERT INTO Inventory(
+    `InventoryID`,
+    `Name`,
+    `Brand`,
+    `Amount_In_Stock`,
+    `Price`
+)
+SELECT
+    `InventoryID`,
+    `Name`,
+    `Brand`,
+    `Amount_In_Stock`,
+    `Price`
+FROM
+    Apparel
+
+
+
+SELECT
+    InventoryID,
+    NAME,
+    Brand,
+    Amount_In_Stock,
+    Price
+FROM
+    Electronic
+
+);
