@@ -24,6 +24,8 @@ CREATE TABLE Sales (
 	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
 	FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID),
 	UNIQUE (Receipt_Number)
+	
+	ALTER TABLE `Sales` ADD `Date Of Sale` DATE NOT NULL AFTER `Amount_Sold`;
 );
 CREATE TABLE Sales_Inventory(
 InventoryID Int(4),
